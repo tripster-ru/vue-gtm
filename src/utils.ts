@@ -6,10 +6,11 @@ import { VueGtmUseOptions } from "./config";
  *
  * @param id GTM ID.
  * @param config The config object.
+ * @param initialMessageData A data to be injected to initial message.
  */
 export function loadScript(
   id: string,
-  config: Pick<VueGtmUseOptions, "defer" | "compatibility" | "queryParams"> = {}
+  config: Pick<VueGtmUseOptions, "defer" | "compatibility" | "queryParams" | "initialMessageData"> = {},
 ): void {
   const doc: Document = document;
   const script: HTMLScriptElement = doc.createElement("script");
@@ -19,6 +20,7 @@ export function loadScript(
   window.dataLayer?.push({
     event: "gtm.js",
     "gtm.start": new Date().getTime(),
+    ...config.initialMessageData
   });
 
   if (!id) {

@@ -110,6 +110,10 @@ export interface VueGtmUseOptions {
    * Whether or not call `trackView` in `Vue.nextTick`.
    */
   trackOnNextTick?: boolean;
+  /**
+   * An initial data to push to Data Layer before the script initialization
+   */
+  initialMessageData?: Record<string|number, any>
 }
 
 /**
